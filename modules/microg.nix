@@ -24,7 +24,7 @@ let
     };
     FakeStore = {
       buildNumber = "84022630"; # The build number of the artefact in the release
-      hash = "sha256-47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU=";
+      hash = "sha256-qXPgI1ooKXc6T6820jXV9wPRwEoq3/Z066pTWi54+Tc=";
     };
   };
 
