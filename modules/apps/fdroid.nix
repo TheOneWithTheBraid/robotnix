@@ -111,11 +111,13 @@ in
     ) "43238D512C1E5EB2D6569F4A3AFBF5523418B82E0A3ED1552770ABB9A9C9CCAB";
 
     apps.prebuilt."F-Droid" = {
-      apk = (pkgs.fetchurl {
-        url = "https://f-droid.org/repo/org.fdroid.fdroid_2000010.apk";
-        sha256 = "0b6c65becb0712828625976c6baa76fc40153f77871487b5bc231c3433856b50";
-      });
-
+      apk = (
+        pkgs.fetchurl {
+          url = "https://f-droid.org/repo/org.fdroid.fdroid_2000010.apk";
+          sha256 = "0b6c65becb0712828625976c6baa76fc40153f77871487b5bc231c3433856b50";
+        }
+      );
+      packageName = "org.fdroid.fdroid";
       certificate = "PRESIGNED";
       usesOptionalLibraries = [
         "androidx.window.extensions"
