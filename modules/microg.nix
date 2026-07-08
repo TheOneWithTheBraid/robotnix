@@ -17,14 +17,14 @@ let
     ;
 
   versions = {
-    release = "v0.3.7.250932"; # The GH release name and git tag
+    release = "v0.3.15.250932"; # The GH release name and git tag
     GmsCore = {
-      buildNumber = "250932014"; # The build number of the artefact in the release
-      hash = "sha256-Lab6aUY013YkLS5onAzev9bbDdzeFSp8O8IWIasKpoI=";
+      buildNumber = "250932030"; # The build number of the artefact in the release
+      hash = "sha256-Ull+d/0l/dNHV00EV+0ZNqS5Vhz0yNNOesjdgZHf1Lk=";
     };
     FakeStore = {
-      buildNumber = "84022614"; # The build number of the artefact in the release
-      hash = "sha256-bNbPFG7L2pDNMTRpLzbbrq7F0uqVgONFPqWZIJ9nhFA=";
+      buildNumber = "84022630"; # The build number of the artefact in the release
+      hash = "sha256-47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU=";
     };
   };
 
@@ -44,6 +44,22 @@ in
 
   config = mkIf config.microg.enable {
     source.dirs = mkMerge [
+      # These patches should be universal from Android 14 to Android 17
+      # Tested on Graphene OS.
+      # LineageOS ships built-in signature spoofing since Android 14 (LineageOS 21).
+      (mkIf
+        (
+          config.androidVersion >= 14
+          && builtins.elem config.flavor [
+            "grapheneos"
+            "aosp"
+          ]
+        )
+        {
+          "frameworks/base".patches = [ ./microg-android17.patch ];
+          "packages/modules/Permission".patches = [ ./microg-android17-permission.patch ];
+        }
+      )
       (mkIf (config.androidVersion == 12 || config.androidVersion == 13) {
         # From: https://github.com/microg/GmsCore/pull/1586
         "frameworks/base".patches =
