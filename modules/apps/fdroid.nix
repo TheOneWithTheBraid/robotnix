@@ -112,15 +112,8 @@ in
 
     apps.prebuilt."F-Droid" = {
       apk = pkgs.fetchurl {
-        urls =
-          let
-            version = "1023051";
-          in
-          [
-            "https://f-droid.org/repo/org.fdroid.fdroid_${version}.apk"
-            "https://f-droid.org/archive/org.fdroid.fdroid_${version}.apk"
-          ];
-        sha256 = "sha256-HfzkJpCBaT8QNQ26vSaZGlnXwruB+HDeVOWxE/R4W3o=";
+        urls = "https://f-droid.org/repo/org.fdroid.fdroid_2000010.apk";
+        sha256 = "0b6c65becb0712828625976c6baa76fc40153f77871487b5bc231c3433856b50";
       };
 
       certificate = "PRESIGNED";
