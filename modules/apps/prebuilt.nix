@@ -40,7 +40,7 @@ let
       ${lib.optionalString (config.androidVersion >= 11 && prebuilt.usesOptionalLibraries != [ ])
         "LOCAL_OPTIONAL_USES_LIBRARIES := ${builtins.concatStringsSep " " prebuilt.usesOptionalLibraries}"
       }
-      LOCAL_REPLACE_PREBUILT_APK_INSTALLED := $(LOCAL_PATH)/$(LOCAL_MODULE).apk
+      LOCAL_REPLACE_PREBUILT_APK_INSTALLED := $(LOCAL_PATH)/${prebuilt.name}.apk
       ${prebuilt.extraConfig}
 
       include $(BUILD_PREBUILT)
